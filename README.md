@@ -30,6 +30,10 @@
 
 - 网络请求异常时，弹出异常信息界面，WebView 展示异常信息。
 
+-  支持自动显示和隐藏网络请求提示框基于MBProgressHUD
+- 支持网络请求返回成功但数据状态错误下的自动提示文字基于Toast（例如密码错误） 
+
+
 ## 安装
 
 ### 支持 Cocoapods 安装
@@ -64,6 +68,15 @@ DKNetworking *networking = [DKNetworking networkManager];
 [DKNetworking setupBaseURL:@"https://m.sfddj.com/app/v1/"];
 ```
 baseURL 的路径一定要有“/”结尾，设置后所有的网络访问都使用相对路径。
+
+#### 作为一个项目通用的请求应该设置以下三个方法
+#####目的就是可以自动判断数据状态时候异常自动提示错误描述
+```objc
+    [DKNetworking setRequestStatusKeyName:@"resultCount"];
+    [DKNetworking setRequestStatusCode:1];
+    [DKNetworking setResultErrorKeyName:@"message"];
+
+```
 
 #### 设置日志
 
