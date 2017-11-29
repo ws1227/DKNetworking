@@ -23,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *downloadBtn;
 /** 是否开始下载 */
 @property (nonatomic, assign, getter=isDownloading) BOOL downloading;
+#define APPID @"1140827531"  //APPID
+
+#define URL_BASE          @"http://itunes.apple.com"
+
 @end
 
 @implementation ViewController
@@ -32,13 +36,20 @@
     [super viewDidLoad];
     
     // 开启日志打印
-    [DKNetworking openLog];
+//    [DKNetworking openLog];
+ 
+    // 设置请求根路径
+    [DKNetworking setupBaseURL:URL_BASE];
+    [DKNetworking setRequestStatusKeyName:@"resultCount"];
+    [DKNetworking setRequestStatusCode:1];
+    [DKNetworking setResultErrorKeyName:@"message"];
+
+    [DKNetworking setRequestTimeoutInterval:50];
+    
     
     // 设置缓存方式
-    [DKNetworking setupCacheType:DKNetworkCacheTypeCacheNetwork];
+    [DKNetworking setupCacheType:DKNetworkCacheTypeNetworkOnly];
     
-    // 设置请求根路径
-//    [DKNetworking setupBaseURL:@"https://m.sfddj.com/app/v1/"];
     
     // 清除缓存
 //    [DKNetworkCache clearCache];
@@ -73,24 +84,47 @@
 {
     [DKNetworking setupCacheType:isOn ? DKNetworkCacheTypeCacheNetwork : DKNetworkCacheTypeNetworkOnly];
     
-    // 常规调用
-//    [DKNetworking POST:url parameters:nil callback:^(DKNetworkRequest *request, DKNetworkResponse *response) {
-//        self.networkTextView.text = !response.error ? response.error.description : [response.rawData dk_jsonString];
-//    }];
+ 
+    
+    
     
     // 链式调用
 //    DKNetworkManager.post(url).callback(^(DKNetworkRequest *request, DKNetworkResponse *response) {
 //        self.networkTextView.text = !response.error ? response.error.description : [response.rawData dk_jsonString];
 //    });
     
-    // RAC 链式调用
-    [DKNetworkManager.post(url).executeSignal subscribeNext:^(RACTuple *x) {
-//        DKNetworkResponse *response = x.second;
-        MyHttpResponse *myResponse = x.second;
-        self.networkTextView.text = [myResponse.rawData dk_jsonString];
-    } error:^(NSError *error) {
-        self.networkTextView.text = error.description;
+   
+    
+    //如果按照统一的数据状态来说这个请求返回的状态是错的（resultCount="1"）但这个请求就没返回resultCount的键值对 如果想获取数据就设置 下边这个忽略状态  一次性的
+    [DKNetworking noAuthenticationRequests:YES];
+    
+    [DKNetworking POST:@"http://baike.baidu.com/api/openapi/BaikeLemmaCardApi?scope=103&format=json&appid=379020&bk_key=ios" parameters:nil callback:^(DKNetworkRequest *request, DKNetworkResponse *response) {
+        NSLog(@"百度请求：%@", [response.rawData dk_jsonString]);
+        self.networkTextView.text = [response.rawData dk_jsonString];
     }];
+//    [DKNetworking GET:[NSString stringWithFormat:@"/lookup?id=%@",APPID]  parameters:nil callback:^(DKNetworkRequest *request, DKNetworkResponse *response) {
+//        NSLog(@"全聚星请求：%@", [response.rawData dk_jsonString]);
+//        self.networkTextView.text = !response.error ? response.error.description : [response.rawData dk_jsonString];
+//    }];
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 常规调用
+        [DKNetworking setRequestTimeoutInterval:30];
+       
+        // RAC 链式调用
+        [DKNetworking setRequestTimeoutInterval:20];
+        [DKNetworking setRequestHudText:@"正在加载"];
+        [DKNetworkManager.get([NSString stringWithFormat:@"/lookup?id=%@",APPID] ).executeSignal subscribeNext:^(RACTuple *x) {
+            //        DKNetworkResponse *response = x.second;
+            MyHttpResponse *myResponse = x.second;
+            self.networkTextView.text = [myResponse.rawData dk_jsonString];
+        } error:^(NSError *error) {
+            self.networkTextView.text = error.description;
+        }];
+       
+        
+    });
 }
 
 /**

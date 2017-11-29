@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1131988D1FCD659A00BB689D /* MBProgressHUD+DZM.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131988A1FCD659A00BB689D /* MBProgressHUD+DZM.m */; };
+		1131988E1FCD659A00BB689D /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1131988B1FCD659A00BB689D /* MBProgressHUD.bundle */; };
+		1131989C1FCD6BCD00BB689D /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131989B1FCD6BCD00BB689D /* UIView+Toast.m */; };
+		1131989F1FCD6FB300BB689D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1131989E1FCD6FB300BB689D /* MBProgressHUD.m */; };
 		D7274E831ED74F370003FE9B /* DKNetworkLogWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7274E821ED74F370003FE9B /* DKNetworkLogWebViewController.m */; };
 		D73CF7111E7C6A9C00A896C6 /* DKNetworkLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D73CF7101E7C6A9C00A896C6 /* DKNetworkLogManager.m */; };
 		D73CF7171E7C7AD600A896C6 /* DKNetworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D73CF7161E7C7AD600A896C6 /* DKNetworkRequest.m */; };
@@ -172,6 +176,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		113198871FCD659A00BB689D /* MBProgressHUD+DZM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+DZM.h"; sourceTree = "<group>"; };
+		1131988A1FCD659A00BB689D /* MBProgressHUD+DZM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+DZM.m"; sourceTree = "<group>"; };
+		1131988B1FCD659A00BB689D /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		1131989A1FCD6BCD00BB689D /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		1131989B1FCD6BCD00BB689D /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		1131989D1FCD6FB300BB689D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		1131989E1FCD6FB300BB689D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D7274E811ED74F370003FE9B /* DKNetworkLogWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKNetworkLogWebViewController.h; sourceTree = "<group>"; };
 		D7274E821ED74F370003FE9B /* DKNetworkLogWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKNetworkLogWebViewController.m; sourceTree = "<group>"; };
 		D73CF70F1E7C6A9C00A896C6 /* DKNetworkLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKNetworkLogManager.h; sourceTree = "<group>"; };
@@ -509,9 +520,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		113198861FCD659A00BB689D /* MBProgressHUD(这个临时临时使用用于阻挡下) */ = {
+			isa = PBXGroup;
+			children = (
+				113198871FCD659A00BB689D /* MBProgressHUD+DZM.h */,
+				1131988A1FCD659A00BB689D /* MBProgressHUD+DZM.m */,
+				1131989D1FCD6FB300BB689D /* MBProgressHUD.h */,
+				1131989E1FCD6FB300BB689D /* MBProgressHUD.m */,
+				1131988B1FCD659A00BB689D /* MBProgressHUD.bundle */,
+			);
+			path = "MBProgressHUD(这个临时临时使用用于阻挡下)";
+			sourceTree = "<group>";
+		};
+		113198991FCD6BCD00BB689D /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				1131989A1FCD6BCD00BB689D /* UIView+Toast.h */,
+				1131989B1FCD6BCD00BB689D /* UIView+Toast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		D79CD87F1E7E83210011D7BF /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				113198991FCD6BCD00BB689D /* Toast */,
+				113198861FCD659A00BB689D /* MBProgressHUD(这个临时临时使用用于阻挡下) */,
 				D79CD8801E7E83210011D7BF /* AFNetworking */,
 				D79CD8A41E7E83210011D7BF /* MJExtension */,
 				D79CD8BA1E7E83210011D7BF /* ReactiveCocoa */,
@@ -1084,6 +1118,7 @@
 			files = (
 				D7ACFC681E616D70000BE551 /* LaunchScreen.storyboard in Resources */,
 				D7ACFC651E616D70000BE551 /* Assets.xcassets in Resources */,
+				1131988E1FCD659A00BB689D /* MBProgressHUD.bundle in Resources */,
 				D79CDA2E1E7E83370011D7BF /* IQKeyboardManager.bundle in Resources */,
 				D7ACFC631E616D70000BE551 /* Main.storyboard in Resources */,
 			);
@@ -1163,9 +1198,11 @@
 				D79CD9A71E7E83220011D7BF /* NSObject+RACDescription.m in Sources */,
 				D79CD9A51E7E83220011D7BF /* NSNotificationCenter+RACSupport.m in Sources */,
 				D79CD9BE1E7E83220011D7BF /* RACEagerSequence.m in Sources */,
+				1131989F1FCD6FB300BB689D /* MBProgressHUD.m in Sources */,
 				D79CD9DD1E7E83220011D7BF /* RACTargetQueueScheduler.m in Sources */,
 				D79CD9CF1E7E83220011D7BF /* RACScheduler.m in Sources */,
 				D79CD98C1E7E83220011D7BF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				1131989C1FCD6BCD00BB689D /* UIView+Toast.m in Sources */,
 				D79CDA2B1E7E83370011D7BF /* IQTitleBarButtonItem.m in Sources */,
 				D79CDA261E7E83370011D7BF /* IQKeyboardManager.m in Sources */,
 				D79CD9BA1E7E83220011D7BF /* RACDelegateProxy.m in Sources */,
@@ -1247,6 +1284,7 @@
 				D79CD9C91E7E83220011D7BF /* RACMulticastConnection.m in Sources */,
 				D79CD9991E7E83220011D7BF /* NSObject+MJKeyValue.m in Sources */,
 				D79CD9BB1E7E83220011D7BF /* RACDisposable.m in Sources */,
+				1131988D1FCD659A00BB689D /* MBProgressHUD+DZM.m in Sources */,
 				D79CD9F91E7E83220011D7BF /* YYKVStorage.m in Sources */,
 				D79CD9AA1E7E83220011D7BF /* NSObject+RACPropertySubscribing.m in Sources */,
 			);

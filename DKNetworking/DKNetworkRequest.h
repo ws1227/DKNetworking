@@ -32,6 +32,9 @@
 /** 请求超时时间 */
 @property (nonatomic, assign) NSTimeInterval requestTimeoutInterval;
 
+/** 提示框文字*/
+@property (nonatomic, copy) NSString * showHUDText;
+
 
 /**
  创建一个网络请求对象

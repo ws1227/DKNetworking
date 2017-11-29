@@ -75,6 +75,26 @@ typedef void(^DKNetworkSessionManagerBlock)(DKNetworkSessionManager *sessionMana
  */
 + (void)setupCacheType:(DKNetworkCacheType)cacheType;
 
+/*****************************下边三个连续方法必须设置************************/
+/**
+ 设置提示请求结果用于标记数据状态是否异常的key通常是"code"
+ 
+ @param keyName 成功失败的key
+ */
++ (void)setRequestStatusKeyName:(NSString *)keyName;
+
+/**
+ 设置提示请求结果用于标记成功的值 一般为1  即"code"=1 表示数据状态正确
+ 
+ @param code 标记成功的值
+ */
++ (void)setRequestStatusCode:(NSInteger )code;
+/** 设置请求状态成功数据状态错误时候的提示文字的key
+ @param keyName key（例如message）
+ 
+ */
++(void)setResultErrorKeyName:(NSString *)keyName;
+
 #pragma mark - Network Status
 
 /**
@@ -308,10 +328,32 @@ typedef void(^DKNetworkSessionManagerBlock)(DKNetworkSessionManager *sessionMana
 + (void)setRequestTimeoutInterval:(NSTimeInterval)time;
 
 /**
+ 设置提示请求Hud文字
+ 
+ @param text 提示文字
+ */
++ (void)setRequestHudText:(NSString *)text;
+
+
+/**
  设置请求头参数
 
  @param networkHeader 请求头参数字典
  */
 + (void)setNetworkHeader:(NSDictionary *)networkHeader;
+/**
+ 设置是否忽略数据状态是否正常返回均执行block(如果设置yes只一次性生效)
+ 
+ @param special 否忽略数据状态是否正常
+ */
++ (void)noAuthenticationRequests:(BOOL)special;
+
+/** 请求状态成功数据失败是否显示后台定义的提示文字
+ @param ishide 是否隐藏错误的提示
+
+ */
++(void)isHideServerText:(BOOL)ishide;
+
+
 
 @end
